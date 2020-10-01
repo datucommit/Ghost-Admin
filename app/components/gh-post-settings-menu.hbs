@@ -99,6 +99,21 @@
                     <GhErrorMessage @errors={{this.post.errors}} @property="customExcerpt" data-test-error="custom-excerpt" />
                 </GhFormGroup>
 
+                <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="customSidebar">
+                    <label for="custom-sidebar">Sidebar</label>
+                    <GhTextarea
+                        @class="post-setting-custom-sidebar"
+                        @id="custom-sidebar"
+                        @name="post-setting-custom-sidebar"
+                        @value={{readonly this.customSidebarScratch}}
+                        @input={{action (mut this.customSidebarScratch) value="target.value"}}
+                        @focus-out={{action "setCustomSidebar" this.customSidebarScratch}}
+                        @stopEnterKeyDownPropagation="true"
+                        data-test-field="custom-sidebar"
+                    />
+                    <GhErrorMessage @errors={{this.post.errors}} @property="customSidebar" data-test-error="custom-sidebar" />
+                </GhFormGroup>
+
                 {{#unless this.session.user.isAuthorOrContributor}}
                     <GhFormGroup @class="for-select" @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="authors" data-test-input="authors">
                         <label for="author-list">Authors</label>

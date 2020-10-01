@@ -8,6 +8,7 @@ export default BaseValidator.create({
         'title',
         'authors',
         'customExcerpt',
+        'customSidebar',
         'canonicalUrl',
         'codeinjectionHead',
         'codeinjectionFoot',
@@ -62,6 +63,13 @@ export default BaseValidator.create({
     customExcerpt(model) {
         if (!validator.isLength(model.customExcerpt || '', 0, 300)) {
             model.errors.add('customExcerpt', 'Excerpt cannot be longer than 300 characters.');
+            this.invalidate();
+        }
+    },
+
+    customSidebar(model) {
+        if (!validator.isLength(model.customSidebar || '', 0, 800)) {
+            model.errors.add('customSidebar', 'Sidebar cannot be longer than 800 characters.');
             this.invalidate();
         }
     },

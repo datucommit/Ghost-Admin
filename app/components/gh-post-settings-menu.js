@@ -220,6 +220,19 @@ export default Component.extend(SettingsMenuMixin, {
             return post.validate({property: 'customExcerpt'}).then(() => this.savePost.perform());
         },
 
+        setCustomSidebar(sidebar) {
+            let post = this.post;
+            let currentSidebar = post.get('customSidebar');
+
+            if (sidebar === currentSidebar) {
+                return;
+            }
+
+            post.set('customSidebar', sidebar);
+
+            return post.validate({property: 'customSidebar'}).then(() => this.savePost.perform());
+        },
+
         setHeaderInjection(code) {
             let post = this.post;
             let currentCode = post.get('codeinjectionHead');
