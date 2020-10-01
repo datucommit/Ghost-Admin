@@ -30,6 +30,7 @@ export default Component.extend(SettingsMenuMixin, {
 
     canonicalUrlScratch: alias('post.canonicalUrlScratch'),
     customExcerptScratch: alias('post.customExcerptScratch'),
+    customSidebarScratch: alias('post.customSidebarScratch'),
     codeinjectionFootScratch: alias('post.codeinjectionFootScratch'),
     codeinjectionHeadScratch: alias('post.codeinjectionHeadScratch'),
     metaDescriptionScratch: alias('post.metaDescriptionScratch'),
