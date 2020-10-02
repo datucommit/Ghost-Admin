@@ -84,6 +84,21 @@
                 {{/if}}
 
 
+                <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="customExcerpt">
+                    <label for="custom-excerpt">Excerpt</label>
+                    <GhTextarea
+                        @class="post-setting-custom-excerpt"
+                        @id="custom-excerpt"
+                        @name="post-setting-custom-excerpt"
+                        @value={{readonly this.customExcerptScratch}}
+                        @input={{action (mut this.customExcerptScratch) value="target.value"}}
+                        @focus-out={{action "setCustomExcerpt" this.customExcerptScratch}}
+                        @stopEnterKeyDownPropagation="true"
+                        data-test-field="custom-excerpt"
+                    />
+                    <GhErrorMessage @errors={{this.post.errors}} @property="customExcerpt" data-test-error="custom-excerpt" />
+                </GhFormGroup>
+
                 {{#unless this.session.user.isAuthorOrContributor}}
                     <GhFormGroup @class="for-select" @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="authors" data-test-input="authors">
                         <label for="author-list">Authors</label>
