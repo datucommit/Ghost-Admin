@@ -217,6 +217,21 @@
                                     <GhErrorMessage @errors={{this.post.errors}} @property="meta-description" />
                                 </GhFormGroup>
 
+                                <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="metaKeywords">
+                                    <label for="meta-keywords">Meta Keywords</label>
+                                    <GhTextarea
+                                        @class="post-setting-meta-keywords"
+                                        @id="meta-keywords"
+                                        @name="post-setting-meta-keywords"
+                                        @value={{readonly this.metaKeywordsScratch}}
+                                        @input={{action (mut this.metaKeywordsScratch) value="target.value"}}
+                                        @focus-out={{action "setMetaKeywords" this.metaKeywordsScratch}}
+                                        @stopEnterKeyDownPropagation="true"
+                                        data-test-field="meta-keywords" />
+                                    <p>Recommended: <b>200</b> characters. You’ve used {{gh-count-down-characters this.metaKeywordsScratch 200}}</p>
+                                    <GhErrorMessage @errors={{this.post.errors}} @property="meta-keywords" />
+                                </GhFormGroup>
+
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="canonicalUrl">
                                     <label for="canonicalUrl">Canonical URL</label>
                                     <GhTextInput
