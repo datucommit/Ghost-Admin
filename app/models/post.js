@@ -134,7 +134,6 @@ export default Model.extend(Comparable, ValidationEngine, {
 
     canonicalUrlScratch: boundOneWay('canonicalUrl'),
     customExcerptScratch: boundOneWay('customExcerpt'),
-    customSidebarScratch: boundOneWay('customSidebar'),
     codeinjectionFootScratch: boundOneWay('codeinjectionFoot'),
     codeinjectionHeadScratch: boundOneWay('codeinjectionHead'),
     metaDescriptionScratch: boundOneWay('metaDescription'),
