@@ -13,7 +13,6 @@ export default BaseValidator.create({
         'codeinjectionFoot',
         'metaTitle',
         'metaDescription',
-        'metaKeywords',
         'ogtitle',
         'ogDescription',
         'twitterTitle',
@@ -91,13 +90,6 @@ export default BaseValidator.create({
     metaDescription(model) {
         if (!validator.isLength(model.metaDescription || '', 0, 500)) {
             model.errors.add('metaDescription', 'Meta Description cannot be longer than 500 characters.');
-            this.invalidate();
-        }
-    },
-
-    metaKeywords(model) {
-        if (!validator.isLength(model.metaKeywords || '', 0, 500)) {
-            model.errors.add('metaKeywords', 'Meta Keywords cannot be longer than 500 characters.');
             this.invalidate();
         }
     },
@@ -188,8 +180,8 @@ export default BaseValidator.create({
                 model.errors.add('publishedAtBlogDate', 'Must be in the past');
                 this.invalidate();
 
-                // scheduled must be at least 2 mins in the future
-                // ignore if it matches publishedAtUTC as that is likely an update of a scheduled post
+            // scheduled must be at least 2 mins in the future
+            // ignore if it matches publishedAtUTC as that is likely an update of a scheduled post
             } else if (status === 'scheduled' && !matchesExisting && !isInFuture) {
                 model.errors.add('publishedAtBlogDate', 'Must be at least 2 mins in the future');
                 this.invalidate();
