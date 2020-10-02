@@ -76,7 +76,6 @@ export default Model.extend(Comparable, ValidationEngine, {
     validationType: 'post',
 
     createdAtUTC: attr('moment-utc'),
-    customSidebar: attr('string'),
     excerpt: attr('string'),
     customExcerpt: attr('string'),
     featured: attr('boolean', {defaultValue: false}),
@@ -96,6 +95,7 @@ export default Model.extend(Comparable, ValidationEngine, {
     locale: attr('string'),
     visibility: attr('string'),
     metaDescription: attr('string'),
+    metaKeywords: attr('string'),
     metaTitle: attr('string'),
     mobiledoc: attr('json-string'),
     plaintext: attr('string'),
@@ -134,10 +134,10 @@ export default Model.extend(Comparable, ValidationEngine, {
 
     canonicalUrlScratch: boundOneWay('canonicalUrl'),
     customExcerptScratch: boundOneWay('customExcerpt'),
-    customSidebarScratch: boundOneWay('customSidebar'),
     codeinjectionFootScratch: boundOneWay('codeinjectionFoot'),
     codeinjectionHeadScratch: boundOneWay('codeinjectionHead'),
     metaDescriptionScratch: boundOneWay('metaDescription'),
+    metaKeywordsScratch: boundOneWay('metaKeywords'),
     metaTitleScratch: boundOneWay('metaTitle'),
     ogDescriptionScratch: boundOneWay('ogDescription'),
     ogTitleScratch: boundOneWay('ogTitle'),

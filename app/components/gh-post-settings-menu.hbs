@@ -99,21 +99,6 @@
                     <GhErrorMessage @errors={{this.post.errors}} @property="customExcerpt" data-test-error="custom-excerpt" />
                 </GhFormGroup>
 
-                <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="customSidebar">
-                    <label for="custom-sidebar">Sidebar</label>
-                    <GhTextarea
-                        @class="post-setting-custom-sidebar"
-                        @id="custom-sidebar"
-                        @name="post-setting-custom-sidebar"
-                        @value={{readonly this.customSidebarScratch}}
-                        @input={{action (mut this.customSidebarScratch) value="target.value"}}
-                        @focus-out={{action "setCustomSidebar" this.customSidebarScratch}}
-                        @stopEnterKeyDownPropagation="true"
-                        data-test-field="custom-sidebar"
-                    />
-                    <GhErrorMessage @errors={{this.post.errors}} @property="customSidebar" data-test-error="custom-sidebar" />
-                </GhFormGroup>
-
                 {{#unless this.session.user.isAuthorOrContributor}}
                     <GhFormGroup @class="for-select" @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="authors" data-test-input="authors">
                         <label for="author-list">Authors</label>
@@ -230,6 +215,21 @@
                                         data-test-field="meta-description" />
                                     <p>Recommended: <b>156</b> characters. You’ve used {{gh-count-down-characters this.metaDescriptionScratch 156}}</p>
                                     <GhErrorMessage @errors={{this.post.errors}} @property="meta-description" />
+                                </GhFormGroup>
+
+                                <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="metaKeywords">
+                                    <label for="meta-keywords">Meta Keywords</label>
+                                    <GhTextarea
+                                        @class="post-setting-meta-keywords"
+                                        @id="meta-keywords"
+                                        @name="post-setting-meta-keywords"
+                                        @value={{readonly this.metaKeywordsScratch}}
+                                        @input={{action (mut this.metaKeywordsScratch) value="target.value"}}
+                                        @focus-out={{action "setMetaKeywords" this.metaKeywordsScratch}}
+                                        @stopEnterKeyDownPropagation="true"
+                                        data-test-field="meta-keywords" />
+                                    <p>Recommended: <b>200</b> characters. You’ve used {{gh-count-down-characters this.metaKeywordsScratch 200}}</p>
+                                    <GhErrorMessage @errors={{this.post.errors}} @property="meta-keywords" />
                                 </GhFormGroup>
 
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="canonicalUrl">

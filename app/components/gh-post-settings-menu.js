@@ -30,10 +30,10 @@ export default Component.extend(SettingsMenuMixin, {
 
     canonicalUrlScratch: alias('post.canonicalUrlScratch'),
     customExcerptScratch: alias('post.customExcerptScratch'),
-    customSidebarScratch: alias('post.customSidebarScratch'),
     codeinjectionFootScratch: alias('post.codeinjectionFootScratch'),
     codeinjectionHeadScratch: alias('post.codeinjectionHeadScratch'),
     metaDescriptionScratch: alias('post.metaDescriptionScratch'),
+    metaKeywordsScratch: alias('post.metaKeywordsScratch'),
     metaTitleScratch: alias('post.metaTitleScratch'),
     ogDescriptionScratch: alias('post.ogDescriptionScratch'),
     ogTitleScratch: alias('post.ogTitleScratch'),
@@ -221,19 +221,6 @@ export default Component.extend(SettingsMenuMixin, {
             return post.validate({property: 'customExcerpt'}).then(() => this.savePost.perform());
         },
 
-        setCustomSidebar(sidebar) {
-            let post = this.post;
-            let currentSidebar = post.get('customSidebar');
-
-            if (sidebar === currentSidebar) {
-                return;
-            }
-
-            post.set('customSidebar', sidebar);
-
-            return post.validate({property: 'customSidebar'}).then(() => this.savePost.perform());
-        },
-
         setHeaderInjection(code) {
             let post = this.post;
             let currentCode = post.get('codeinjectionHead');
@@ -298,6 +285,29 @@ export default Component.extend(SettingsMenuMixin, {
 
             // Make sure the meta title is valid and if so, save it into the post
             return post.validate({property: 'metaDescription'}).then(() => {
+                if (post.get('isNew')) {
+                    return;
+                }
+
+                return this.savePost.perform();
+            });
+        },
+
+        setMetaKeywords(metaKeywords) {
+            // Grab the post and current stored meta description
+            let post = this.post;
+            let currentKeywords = post.get('metaKeywords');
+
+            // If the title entered matches the stored meta title, do nothing
+            if (currentKeywords === metaKeywords) {
+                return;
+            }
+
+            // If the title entered is different, set it as the new meta title
+            post.set('metaKeywords', metaKeywords);
+
+            // Make sure the meta title is valid and if so, save it into the post
+            return post.validate({property: 'metaKeywords'}).then(() => {
                 if (post.get('isNew')) {
                     return;
                 }

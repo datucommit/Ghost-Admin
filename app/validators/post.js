@@ -8,12 +8,12 @@ export default BaseValidator.create({
         'title',
         'authors',
         'customExcerpt',
-        'customSidebar',
         'canonicalUrl',
         'codeinjectionHead',
         'codeinjectionFoot',
         'metaTitle',
         'metaDescription',
+        'metaKeywords',
         'ogtitle',
         'ogDescription',
         'twitterTitle',
@@ -67,13 +67,6 @@ export default BaseValidator.create({
         }
     },
 
-    customSidebar(model) {
-        if (!validator.isLength(model.customSidebar || '', 0, 800)) {
-            model.errors.add('customSidebar', 'Sidebar cannot be longer than 800 characters.');
-            this.invalidate();
-        }
-    },
-
     codeinjectionFoot(model) {
         if (!validator.isLength(model.codeinjectionFoot || '', 0, 65535)) {
             model.errors.add('codeinjectionFoot', 'Footer code cannot be longer than 65535 characters.');
@@ -98,6 +91,13 @@ export default BaseValidator.create({
     metaDescription(model) {
         if (!validator.isLength(model.metaDescription || '', 0, 500)) {
             model.errors.add('metaDescription', 'Meta Description cannot be longer than 500 characters.');
+            this.invalidate();
+        }
+    },
+
+    metaKeywords(model) {
+        if (!validator.isLength(model.metaKeywords || '', 0, 500)) {
+            model.errors.add('metaKeywords', 'Meta Keywords cannot be longer than 500 characters.');
             this.invalidate();
         }
     },
