@@ -103,6 +103,8 @@ export default Model.extend(Comparable, ValidationEngine, {
     slug: attr('string'),
     status: attr('string', {defaultValue: 'draft'}),
     title: attr('string', {defaultValue: ''}),
+    // eslint-disable-next-line no-undef
+    domain: attr('string', {defaultValue: (typeof process !== 'undefined' ? process.env.subdomain : '')}),
     updatedAtUTC: attr('moment-utc'),
     updatedBy: attr('number'),
     url: attr('string'),
