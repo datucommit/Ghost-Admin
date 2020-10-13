@@ -96,8 +96,8 @@ export default BaseValidator.create({
     },
 
     metaKeywords(model) {
-        if (!validator.isLength(model.metaKeywords || '', 0, 500)) {
-            model.errors.add('metaKeywords', 'Meta Keywords cannot be longer than 500 characters.');
+        if (!validator.isLength(model.metaKeywords || '', 0, 700)) {
+            model.errors.add('metaKeywords', 'Meta Keywords cannot be longer than 700 characters.');
             this.invalidate();
         }
     },
